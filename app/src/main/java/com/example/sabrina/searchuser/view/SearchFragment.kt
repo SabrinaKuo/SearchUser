@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.LinearLayout
 import com.example.sabrina.searchuser.R
 import com.example.sabrina.searchuser.model.User
@@ -30,7 +31,7 @@ class SearchFragment : Fragment() {
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(view.context, LinearLayout.VERTICAL, false)
 
-        var textedit = view.findViewById<TextInputEditText>(R.id.edtQuery)
+        var textedit = view.findViewById<EditText>(R.id.edtQuery)
         var button = view.findViewById<Button>(R.id.btnSearch)
         button.setOnClickListener({
             var queryName = textedit.text.toString()
@@ -40,7 +41,6 @@ class SearchFragment : Fragment() {
         searchViewModel.listOfUser.observe(this, Observer(function = fun(resultList: List<User>?){
             resultList?.let {
                 if (resultList.isNotEmpty()){
-//                    var list = listOf(User("https://avatars0.githubusercontent.com/u/13518019?v=4", "SabrinaKuo"), User("https://avatars0.githubusercontent.com/u/13518019?v=4", "SabrinaKuo"))
                     var searchResultAdapter = SearchResultAdapter(resultList)
                     recyclerView.adapter = searchResultAdapter
                 }
